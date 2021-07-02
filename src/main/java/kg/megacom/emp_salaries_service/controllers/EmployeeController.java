@@ -5,6 +5,8 @@ import kg.megacom.emp_salaries_service.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/employee")
 public class EmployeeController {
@@ -20,6 +22,11 @@ public class EmployeeController {
     @PutMapping("/update")
     public EmployeeDto update(@RequestBody EmployeeDto employeeDto){
         return employeeService.update(employeeDto);
+    }
+
+    @GetMapping("/all")
+    public List<EmployeeDto> findAll(){
+        return employeeService.findAll();
     }
 
 }

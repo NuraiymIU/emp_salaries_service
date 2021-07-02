@@ -17,6 +17,7 @@ public class SalaryServiceImpl implements SalaryService {
     private SalaryRepo salaryRepo;
 
     private void createNewSalary(double salary,Employee employee){
+
         Salary newSalary = new Salary();
         newSalary.setSalary(salary);
         newSalary.setEmployee(employee);
@@ -31,8 +32,8 @@ public class SalaryServiceImpl implements SalaryService {
         calendar.set(Calendar.SECOND,0);
         calendar.set(Calendar.MILLISECOND,0);
         newSalary.setEndDate(calendar.getTime());
-        //salaryRepo.save(newSalary);
-        //calendar = new calendar;
+        
+        salaryRepo.save(newSalary);
     }
 
     @Override
@@ -53,5 +54,11 @@ public class SalaryServiceImpl implements SalaryService {
             }
         }
 
+    }
+
+    @Override
+    public double findCurrentSalary(Employee employee) {
+        Salary salary = salaryRepo.findByEmployeeCurrentSalary(employee.getId(),new Date());
+        return salary.getSalary();
     }
 }

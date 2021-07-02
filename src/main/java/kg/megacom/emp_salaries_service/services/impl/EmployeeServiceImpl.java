@@ -10,6 +10,9 @@ import kg.megacom.emp_salaries_service.services.SalaryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
@@ -44,5 +47,16 @@ public class EmployeeServiceImpl implements EmployeeService {
         salaryService.setSalaryForEmployee(employeeDto.getSalary(), employee);
 
         return employeeMapper.toEmployeeDto(employee,employeeDto.getSalary());
+    }
+
+    @Override
+    public List<EmployeeDto> findAll() {
+        List<Employee> employees = employeeRepo.findAll();
+        List<EmployeeDto> employeeDtos = employees
+                .stream()
+                .map(x -> employeeMapper.toEmployeeDto(x,salaryService.findCurrentSalary(x)))
+                .collect(Collectors.toList());
+
+        return employeeDtos;
     }
 }

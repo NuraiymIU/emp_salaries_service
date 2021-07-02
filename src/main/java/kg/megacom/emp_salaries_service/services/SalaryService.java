@@ -5,4 +5,5 @@ import kg.megacom.emp_salaries_service.models.entity.Employee;
 public interface SalaryService {
 
     void setSalaryForEmployee(double salary, Employee employee);
+    double findCurrentSalary(Employee employee);
 }
