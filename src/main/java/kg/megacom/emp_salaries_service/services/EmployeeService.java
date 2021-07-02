@@ -7,4 +7,5 @@ public interface EmployeeService {
 
     EmployeeDto save(EmployeeDto employeeDto);
 
+    EmployeeDto update(EmployeeDto employeeDto);
 }

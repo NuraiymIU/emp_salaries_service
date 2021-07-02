@@ -1,6 +1,7 @@
 package kg.megacom.emp_salaries_service.services.impl;
 
 import kg.megacom.emp_salaries_service.dao.EmployeeRepo;
+import kg.megacom.emp_salaries_service.exceptions.EmployeeNotFound;
 import kg.megacom.emp_salaries_service.mappers.EmployeeMapper;
 import kg.megacom.emp_salaries_service.models.dto.EmployeeDto;
 import kg.megacom.emp_salaries_service.models.entity.Employee;
@@ -31,5 +32,17 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         return employeeMapper.toEmployeeDto(employee,employeeDto.getSalary());
 
+    }
+
+    @Override
+    public EmployeeDto update(EmployeeDto employeeDto) {
+
+        Employee employee = employeeRepo.findById(employeeDto.getId()).orElseThrow(()->new EmployeeNotFound("Сотрудник не найден!"));
+
+        employee = employeeMapper.toEmployee(employeeDto);
+
+        salaryService.setSalaryForEmployee(employeeDto.getSalary(), employee);
+
+        return employeeMapper.toEmployeeDto(employee,employeeDto.getSalary());
     }
 }

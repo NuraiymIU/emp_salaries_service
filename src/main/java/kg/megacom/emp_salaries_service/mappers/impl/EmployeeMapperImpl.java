@@ -12,6 +12,10 @@ public class EmployeeMapperImpl implements EmployeeMapper {
     public Employee toEmployee(EmployeeDto employeeDto) {
 
         Employee employee = new Employee();
+
+        if(employeeDto.getId() != null){
+           employee.setId(employeeDto.getId());
+        }
         employee.setName(employeeDto.getName());
         employee.setSurname(employeeDto.getSurname());
         employee.setActive(employeeDto.isActive());
