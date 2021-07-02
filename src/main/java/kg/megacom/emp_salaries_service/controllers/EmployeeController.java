@@ -5,6 +5,7 @@ import kg.megacom.emp_salaries_service.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
@@ -27,6 +28,11 @@ public class EmployeeController {
     @GetMapping("/all")
     public List<EmployeeDto> findAll(){
         return employeeService.findAll();
+    }
+
+    @DeleteMapping("/delete/{emp_id}")
+    public void delete(@PathVariable Long emp_id){
+        employeeService.delete(emp_id);
     }
 
 }

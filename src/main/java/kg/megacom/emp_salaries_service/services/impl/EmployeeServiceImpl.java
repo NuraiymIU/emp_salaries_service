@@ -59,4 +59,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         return employeeDtos;
     }
+
+    @Override
+    public void delete(Long emp_id) {
+        Employee employee = employeeRepo.findById(emp_id).orElseThrow(()->new EmployeeNotFound("Сотрудник не найден!"));
+
+        employee.setActive(false);
+        employeeRepo.save(employee);
+
+    }
 }

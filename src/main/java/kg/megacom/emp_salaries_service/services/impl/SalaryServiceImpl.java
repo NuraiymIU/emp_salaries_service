@@ -32,7 +32,7 @@ public class SalaryServiceImpl implements SalaryService {
         calendar.set(Calendar.SECOND,0);
         calendar.set(Calendar.MILLISECOND,0);
         newSalary.setEndDate(calendar.getTime());
-        
+
         salaryRepo.save(newSalary);
     }
 
