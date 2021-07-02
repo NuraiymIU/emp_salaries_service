@@ -1,5 +1,6 @@
-package kg.megacom.emp_salaries_service.models;
+package kg.megacom.emp_salaries_service.models.entity;
 
+import kg.megacom.emp_salaries_service.models.entity.Employee;
 import lombok.Data;
 
 import javax.persistence.*;

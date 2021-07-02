@@ -1,4 +1,4 @@
-package kg.megacom.emp_salaries_service.models;
+package kg.megacom.emp_salaries_service.models.entity;
 
 import lombok.Data;
 
@@ -15,5 +15,5 @@ public class Employee {
 
     private String name;
     private String surname;
-    private boolean active;
+    
 }
