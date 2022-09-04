@@ -40,10 +40,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public EmployeeDto update(EmployeeDto employeeDto) {
 
-        Employee employee = employeeRepo.findById(employeeDto.getId()).orElseThrow(() -> new EmployeeNotFound("Сотрудник не найден!"));
+        Employee employee = employeeRepo.findById(employeeDto.getId())
+                .orElseThrow(() -> new EmployeeNotFound("Сотрудник не найден!"));
 
         employee = employeeMapper.toEmployee(employeeDto);
 
+        employeeRepo.save(employee);
         salaryService.setSalaryForEmployee(employeeDto.getSalary(), employee);
 
         return employeeMapper.toEmployeeDto(employee, employeeDto.getSalary());
@@ -62,7 +64,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void delete(Long emp_id) {
-        Employee employee = employeeRepo.findById(emp_id).orElseThrow(() -> new EmployeeNotFound("Сотрудник не найден!"));
+        Employee employee = employeeRepo.findById(emp_id)
+                .orElseThrow(() -> new EmployeeNotFound("Сотрудник не найден!"));
 
         employee.setActive(false);
         employeeRepo.save(employee);
