@@ -1,6 +1,5 @@
 package kg.megacom.emp_salaries_service.models.entity;
 
-import kg.megacom.emp_salaries_service.models.entity.Employee;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -13,8 +12,8 @@ public class Salary {
 
     @Id
     @GeneratedValue
-
     private Long id;
+
     private double salary;
     private Date startDate;
     private Date endDate;

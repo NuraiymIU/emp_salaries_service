@@ -31,22 +31,22 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee employee = employeeMapper.toEmployee(employeeDto);
         employee = employeeRepo.save(employee);
         employeeDto.setId(employee.getId());
-        salaryService.setSalaryForEmployee(employeeDto.getSalary(),employee);
+        salaryService.setSalaryForEmployee(employeeDto.getSalary(), employee);
 
-        return employeeMapper.toEmployeeDto(employee,employeeDto.getSalary());
+        return employeeMapper.toEmployeeDto(employee, employeeDto.getSalary());
 
     }
 
     @Override
     public EmployeeDto update(EmployeeDto employeeDto) {
 
-        Employee employee = employeeRepo.findById(employeeDto.getId()).orElseThrow(()->new EmployeeNotFound("Сотрудник не найден!"));
+        Employee employee = employeeRepo.findById(employeeDto.getId()).orElseThrow(() -> new EmployeeNotFound("Сотрудник не найден!"));
 
         employee = employeeMapper.toEmployee(employeeDto);
 
         salaryService.setSalaryForEmployee(employeeDto.getSalary(), employee);
 
-        return employeeMapper.toEmployeeDto(employee,employeeDto.getSalary());
+        return employeeMapper.toEmployeeDto(employee, employeeDto.getSalary());
     }
 
     @Override
@@ -54,7 +54,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         List<Employee> employees = employeeRepo.findAll();
         List<EmployeeDto> employeeDtos = employees
                 .stream()
-                .map(x -> employeeMapper.toEmployeeDto(x,salaryService.findCurrentSalary(x)))
+                .map(x -> employeeMapper.toEmployeeDto(x, salaryService.findCurrentSalary(x)))
                 .collect(Collectors.toList());
 
         return employeeDtos;
@@ -62,7 +62,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void delete(Long emp_id) {
-        Employee employee = employeeRepo.findById(emp_id).orElseThrow(()->new EmployeeNotFound("Сотрудник не найден!"));
+        Employee employee = employeeRepo.findById(emp_id).orElseThrow(() -> new EmployeeNotFound("Сотрудник не найден!"));
 
         employee.setActive(false);
         employeeRepo.save(employee);

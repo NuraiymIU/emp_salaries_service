@@ -8,11 +8,11 @@ import org.springframework.stereotype.Repository;
 import java.util.Date;
 
 @Repository
-public interface SalaryRepo extends JpaRepository<Salary,Long> {
+public interface SalaryRepo extends JpaRepository<Salary, Long> {
 
     @Query("select u from Salary u where u.employee.id = ?1 and ?2 between u.startDate and u.endDate")
     Salary findByEmployeeCurrentSalary(Long id, Date date);
 
-    //Salary findByEmployeeIdAndStartDateBeforeAndEndDateAfter(Long id,Date today, Date today1);
+    Salary findByEmployeeIdAndStartDateBeforeAndEndDateAfter(Long id, Date today, Date today1);
 
 }

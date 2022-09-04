@@ -16,22 +16,22 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @PostMapping("/save")
-    public EmployeeDto save(@RequestBody EmployeeDto employeeDto){
+    public EmployeeDto save(@RequestBody EmployeeDto employeeDto) {
         return employeeService.save(employeeDto);
     }
 
     @PutMapping("/update")
-    public EmployeeDto update(@RequestBody EmployeeDto employeeDto){
+    public EmployeeDto update(@RequestBody EmployeeDto employeeDto) {
         return employeeService.update(employeeDto);
     }
 
     @GetMapping("/all")
-    public List<EmployeeDto> findAll(){
+    public List<EmployeeDto> findAll() {
         return employeeService.findAll();
     }
 
     @DeleteMapping("/delete/{emp_id}")
-    public void delete(@PathVariable Long emp_id){
+    public void delete(@PathVariable Long emp_id) {
         employeeService.delete(emp_id);
     }
 
